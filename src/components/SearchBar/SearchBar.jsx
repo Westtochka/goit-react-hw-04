@@ -1,7 +1,7 @@
-const SearchBar = ({ onSubmit }) => {
+const SearchBar = () => {
   return (
     <div>
-      <header>
+      {/* <header>
         <form>
           <input
             type="text"
@@ -11,7 +11,7 @@ const SearchBar = ({ onSubmit }) => {
           />
           <button type="submit">Search</button>
         </form>
-      </header>
+      </header> */}
     </div>
   );
 };
