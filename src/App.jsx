@@ -1,20 +1,35 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
+import { fetchImages } from "./service/api";
+import Loader from "./components/Loader/Loader";
 
 const App = () => {
   const [images, setImages] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
   useEffect(() => {
-    axios
-      .get(
-        "https://api.unsplash.com/photos/?client_id=FfxAJlP_MyYMjTsxyxru6y7PlFDjwyNLRwOfOvk3pfw"
-      )
-      .then((res) => setImages(res.data));
+    const getData = async () => {
+      try {
+        setIsLoading(true);
+        setIsError(false);
+        const response = await fetchImages();
+        setImages(response);
+      } catch (error) {
+        console.log(error);
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    getData();
   }, []);
 
   return (
     <div>
-      Я тут
+      {isLoading && <Loader />}
+      {isError && <h2>Щось сталось, онови сторінку!</h2>}
       <ImageGallery images={images} />
     </div>
   );

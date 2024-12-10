@@ -1,8 +1,9 @@
+import s from "./ImageCard.module.css";
 const ImageCard = ({ image }) => {
   return (
     <div>
-      <li key={image.id}>
-        <img src={image.urls.small} alt={image.description} />
+      <li className={s.gallery} key={image.id}>
+        <img className={s.img} src={image.urls.small} alt={image.description} />
       </li>
     </div>
   );
