@@ -15,7 +15,7 @@ const SearchBar = ({ onChangeQuery }) => {
           <Form>
             <Field
               name="query"
-              type="text"
+              // type="text"
               // autocomplete="off"
               // autofocus
               placeholder="Search images and photos"

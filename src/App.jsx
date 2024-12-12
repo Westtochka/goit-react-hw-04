@@ -8,15 +8,15 @@ const App = () => {
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [query, setQuery] = useState("bird");
+  const [query, setQuery] = useState("map");
 
   useEffect(() => {
     const getData = async () => {
       try {
         setIsLoading(true);
         setIsError(false);
-        const response = await fetchImages(query);
-        setImages(response);
+        const { results } = await fetchImages(query);
+        setImages((prevImg) => [...prevImg, ...results]);
       } catch (error) {
         console.log(error);
         setIsError(true);
@@ -28,6 +28,7 @@ const App = () => {
     getData();
   }, [query]);
   const handleQuery = (query) => {
+    setImages([]);
     setQuery(query);
   };
   return (
